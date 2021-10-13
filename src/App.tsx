@@ -6,23 +6,29 @@ import {items} from './data/items';
 import { useState, useEffect } from 'react';
 import {getCurrentMonth, filterListByMonth} from './helpers/dateFilter'
 import {TableArea} from './components/TableArea';
+import { InfoArea } from './components/InfoArea'
+
+
+
 const App = () => {
 
-  const [list,setList] = useState(items);
-  const [currentMonth, setCurrentMonth] = useState(getCurrentMonth);
+  const [list, setList] = useState(items);
   const [filteredList, setFilteredList] = useState<Item[]>([]);
+  const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
 
   useEffect(()=>{
-    setFilteredList(filterListByMonth(list, currentMonth));
-  },[list, currentMonth]);
+    setFilteredList( filterListByMonth(list, currentMonth) );
+    console.log( filterListByMonth(list, currentMonth) )
 
+  }, [list, currentMonth]);
+ 
   return (
     <C.Container>
       <C.Header>
         <C.HeaderText>Sistema Finaceiro</C.HeaderText>
       </C.Header>
       <C.Body>
-        {/*area de informações*/ }
+        <InfoArea currentMonth={currentMonth}/>
         {/*area de inserção de informação*/ }
         <TableArea list={filteredList}/>
       </C.Body>
