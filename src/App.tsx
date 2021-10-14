@@ -21,6 +21,10 @@ const App = () => {
     console.log( filterListByMonth(list, currentMonth) )
 
   }, [list, currentMonth]);
+
+  const hadleMonthChange = (newMonth: string) =>{
+    setCurrentMonth(newMonth);
+  }
  
   return (
     <C.Container>
@@ -28,7 +32,10 @@ const App = () => {
         <C.HeaderText>Sistema Finaceiro</C.HeaderText>
       </C.Header>
       <C.Body>
-        <InfoArea currentMonth={currentMonth}/>
+        <InfoArea 
+          currentMonth={currentMonth}
+          onMonthChange={hadleMonthChange}
+        />
         {/*area de inserção de informação*/ }
         <TableArea list={filteredList}/>
       </C.Body>
