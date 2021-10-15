@@ -12,8 +12,8 @@ export const Title = styled.div `
 `;
 
 
-export const Info = styled.div `
+export const Info = styled.div<{color?:string}> `
     text-algn:center;
     font-weight:bold;
-    color:#000;
+    color:${props => props.color ?? '#000'};
 `;
